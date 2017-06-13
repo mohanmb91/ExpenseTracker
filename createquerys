@@ -1,0 +1,50 @@
+
+    create table expenses (
+        id integer not null auto_increment,
+        amount decimal(19,2),
+        description varchar(255),
+        transactionTime DATETIME,
+        primary key (id)
+    );
+
+    create table user_role (
+        id integer not null auto_increment,
+        role varchar(255),
+        primary key (id)
+    );
+
+    create table users (
+        id integer not null auto_increment,
+        email_id varchar(255),
+        firstName varchar(255),
+        last_name varchar(255),
+        password varchar(255),
+        userRole_id integer,
+        primary key (id)
+    );
+
+    create table users_expenses (
+        users_id integer not null,
+        transactions_id integer not null
+    );
+
+    alter table users_expenses 
+        add constraint UK_2mgogl1bbhx1o4be5e3x4wfyr unique (transactions_id);
+
+    alter table users 
+        add index FK_pxsi5ryp0d78pvm0yhq4x51mw (userRole_id), 
+        add constraint FK_pxsi5ryp0d78pvm0yhq4x51mw 
+        foreign key (userRole_id) 
+        references user_role (id);
+
+    alter table users_expenses 
+        add index FK_2mgogl1bbhx1o4be5e3x4wfyr (transactions_id), 
+        add constraint FK_2mgogl1bbhx1o4be5e3x4wfyr 
+        foreign key (transactions_id) 
+        references expenses (id);
+
+    alter table users_expenses 
+        add index FK_2ql0unmb3uy8hd1oy61m0bqwl (users_id), 
+        add constraint FK_2ql0unmb3uy8hd1oy61m0bqwl 
+        foreign key (users_id) 
+        references users (id);
