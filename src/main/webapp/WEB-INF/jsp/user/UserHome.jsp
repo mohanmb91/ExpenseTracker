@@ -22,12 +22,23 @@
 
 <div class="panel panel-default">
 	<!-- Default panel contents -->
-	<div class="panel-heading">Welcome ${user.firstName} !! <span style="float:right;"><a href = "/expensemanager/logout.html"> Log Out</a>
-	</span>
+	<div class="panel-heading">Welcome ${user.firstName} !! 
+	<span style="float:right;"><a href = "/expensemanager/logout.html"> Log Out</a></span>
+	
 	</div>
+	
 	<div class="panel-body">
 		<div class="panel panel-default">
-		<div class = "panel-heading">Expense List of ${user.firstName } ${user.lastName }</div>
+		<div class = "panel-heading">Expense List of ${user.firstName } ${user.lastName }
+			<a href="reportsWeekly.html?userId=${user.id }" style= "float:right;">
+				<span class="glyphicon glyphicon-file"></span><span> Generate Weekly report</span>
+			</a>
+			
+				<a href="reportsDateRange.html?userId=${user.id }" style= "float:right;">
+					<span class="glyphicon glyphicon-file"></span><span> Generate Expense Report Within Range    </span></a>
+			
+		 </div>
+		
 			<div class = "panel-body">
 						<table class="table">
 						
